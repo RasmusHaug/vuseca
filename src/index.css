@@ -1,29 +1,41 @@
 @import 'tailwindcss';
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@theme {
+  /* ---------- Colours ---------- */
+  /* Light (default) palette */
+  --bg-primary: #ffffff;
+  --text-primary: #213547;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* ---------- Fonts ---------- */
+  --font-display: "Satoshi", "sans-serif";
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* ---------- Breakpoints ---------- */
+  --breakpoint-3xl: 1920px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+:root[data-theme="dark"] {
+  /* Dark theme overrides */
+  --bg-primary: #111827;
+  --text-primary: #f9fafb;
+  --color-primary: #072261;
+  --color-primary-hover: #60a5fa;
+}
+
+html,
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-display), system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.btn-primary {
+  @apply bg-primary text-white hover:bg-primary-hover;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    transition: background-color .25s ease, color .25s ease;
   }
 }
